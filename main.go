@@ -13,15 +13,8 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "relinkvc"
-	app.Version = "0.0.1"
+	app.Version = "0.5.0"
 	app.Compiled = time.Now()
-	app.Authors = []cli.Author{
-		cli.Author{
-			Name:  "James Vaughan",
-			Email: "james@jamesbvaughan.com",
-		},
-	}
-	app.Copyright = "(c) 2018 James Vaughan"
 	app.HelpName = "relinkvc"
 	app.Usage = "bookmark things like you mean it"
 	app.EnableBashCompletion = true
