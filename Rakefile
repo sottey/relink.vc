@@ -19,18 +19,18 @@ task :build do
     ENV["GOOS"] = env[:goos]
     ENV["GOARCH"] = env[:arch]
     puts "Building #{env[:goos]} #{env[:arch]}"
-    `GOOS=#{env[:goos]} GOARCH=#{env[:arch]} CGO_ENABLED=0 go build -v -o dist/#{Version}/redovc`
+    `GOOS=#{env[:goos]} GOARCH=#{env[:arch]} CGO_ENABLED=0 go build -v -o dist/#{Version}/relinkvc`
     if env[:goos] == "windows"
       puts "Creating windows executable"
-      `mv dist/#{Version}/redovc dist/#{Version}/redovc.exe`
-      `cd dist/#{Version} && zip redovc_win.zip redovc.exe`
+      `mv dist/#{Version}/relinkvc dist/#{Version}/relinkvc.exe`
+      `cd dist/#{Version} && zip relinkvc_win.zip relinkvc.exe`
       puts "Removing windows executable"
-      `rm -rf dist/#{Version}/redovc.exe`
+      `rm -rf dist/#{Version}/relinkvc.exe`
     else
       puts "Tarring #{env[:goos]} #{env[:arch]}"
-      `cd dist/#{Version} && tar -czvf redovc#{env[:goos]}_#{env[:arch]}.tar.gz redovc`
-      puts "Removing dist/#{Version}/redovc"
-      `rm -rf dist/#{Version}/redovc`
+      `cd dist/#{Version} && tar -czvf relinkvc_#{env[:goos]}_#{env[:arch]}.tar.gz relinkvc`
+      puts "Removing dist/#{Version}/relinkvc"
+      `rm -rf dist/#{Version}/relinkvc`
     end
   end
 end
