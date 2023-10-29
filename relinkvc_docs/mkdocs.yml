@@ -1,0 +1,9 @@
+site_name: relink.vc
+site_url: https://relink.vc/
+
+# theme: material
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - On GitHub: https://github.com/sottey/relink.vc
+

@@ -79,6 +79,6 @@ func Serve() {
 		http.Redirect(w, r, "/", http.StatusFound)
 	})
 
-	fmt.Println("listening on http://localhost:3030")
-	http.ListenAndServe(":3030", r)
+	fmt.Println("listening on http://127.0.0.7:8080")
+	http.ListenAndServe(":8080", r)
 }

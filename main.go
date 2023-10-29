@@ -22,7 +22,7 @@ func main() {
 	app.Commands = []cli.Command{
 		{
 			Name:    "add",
-			Aliases: []string{"new"},
+			Aliases: []string{"a", "new"},
 			Usage:   "add a bookmark",
 			Action: func(c *cli.Context) {
 				bookmarks := GetBookmarks()
@@ -42,8 +42,12 @@ func main() {
 					Usage: "print bookmark URLs",
 				},
 				cli.BoolFlag{
-					Name:  "archive, a",
+					Name:  "archive, ar",
 					Usage: "print archived bookmarks",
+				},
+				cli.BoolFlag{
+					Name:  "all",
+					Usage: "print all bookmarks",
 				},
 			},
 			Action: func(c *cli.Context) {
@@ -53,6 +57,11 @@ func main() {
 					bookmarks = GetArchivedBookmarks()
 				} else {
 					bookmarks = GetBookmarks()
+				}
+
+				if c.Bool("all") {
+					bookmarks = append(bookmarks, GetBookmarks()...)
+					bookmarks = append(bookmarks, GetArchivedBookmarks()...)
 				}
 
 				PrintBookmarkTable(bookmarks, c.Bool("urls"), !c.Bool("archive"))
@@ -76,7 +85,7 @@ func main() {
 		},
 		{
 			Name:    "archive",
-			Aliases: []string{"a"},
+			Aliases: []string{"ar"},
 			Usage:   "archive a bookmark",
 			Action: func(c *cli.Context) {
 				index := c.Args().First()
